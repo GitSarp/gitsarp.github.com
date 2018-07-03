@@ -91,7 +91,9 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3341325-9535fd7a41a09db2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3341325-49e59bb7f5b83f88.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3341325-962de92314dd0be0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-07-03T13:39:01.501Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3341325-1a30e678250ff848.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3341325-96c3f550011e16c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-07-03T14:02:50.030Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Linux">
 <meta name="twitter:description" content="性能查看命令java相关ps -ef | grep java                 找所有有关“java”的进程ps -efL | grep [PID] | wc -l         查看某个进程创建的线程数jmap -histo [pid]                 按照对象内存大小排序 注意会导致full gc 内存 free 12345free [－b　－k　－m][－o]">
@@ -418,6 +420,25 @@
 </blockquote>
 </li>
 </ul>
+<h3 id="问题记录："><a href="#问题记录：" class="headerlink" title="问题记录："></a>问题记录：</h3><h4 id="1-bios中没有arch引导项或选择arch后，grub-进入rescue模式，提示unknown-file-system"><a href="#1-bios中没有arch引导项或选择arch后，grub-进入rescue模式，提示unknown-file-system" class="headerlink" title="1.bios中没有arch引导项或选择arch后，grub 进入rescue模式，提示unknown file system"></a>1.bios中没有arch引导项或选择arch后，grub 进入rescue模式，提示unknown file system</h4><blockquote>
+<p>可以通过easyUEFI，管理efi启动项</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/3341325-1a30e678250ff848.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择esp启动分区"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3341325-96c3f550011e16c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择grubx64.efi所在"></p>
+<blockquote>
+<p>在grub rescue模式中，也可以通过输入以下命令进入Linux系统</p>
+<ul>
+<li>ls</li>
+<li>ls 各个分区，找到文件系统为fat的启动分区，unknown即不是（diskgenius辅助）</li>
+<li>set root=(hd1，gpt5)     设置启动分区</li>
+<li>prefix= /grub  （x86_64-efi所在的目录）</li>
+<li>insmod normal<br>以上步骤没错的话，输入以下命令可进入grub菜单，否则是这两个参数有错</li>
+<li>normal</li>
+</ul>
+</blockquote>
+<ul>
+<li>按e编辑启动项为刚刚的分区，ctrl+x引导，最后进入系统后修改grub.cfg(用grub-mkconfig -o /boot/grub/grub.cfg自动生成)</li>
+</ul>
 
       
     </div>
@@ -487,8 +508,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/01/questions/" rel="prev" title="java环境问题">
-                java环境问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/01/Java基础/" rel="prev" title="Java基础">
+                Java基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -576,7 +597,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -587,7 +608,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -598,7 +619,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -631,7 +652,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#性能查看命令"><span class="nav-number">1.</span> <span class="nav-text">性能查看命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#java相关"><span class="nav-number">1.0.1.</span> <span class="nav-text">java相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存"><span class="nav-number">1.0.2.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络"><span class="nav-number">1.0.3.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#磁盘"><span class="nav-number">1.0.4.</span> <span class="nav-text">磁盘</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他命令"><span class="nav-number">2.</span> <span class="nav-text">其他命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VIM"><span class="nav-number">3.</span> <span class="nav-text">VIM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发行版"><span class="nav-number">4.</span> <span class="nav-text">发行版</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#性能查看命令"><span class="nav-number">1.</span> <span class="nav-text">性能查看命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#java相关"><span class="nav-number">1.0.1.</span> <span class="nav-text">java相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存"><span class="nav-number">1.0.2.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络"><span class="nav-number">1.0.3.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#磁盘"><span class="nav-number">1.0.4.</span> <span class="nav-text">磁盘</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他命令"><span class="nav-number">2.</span> <span class="nav-text">其他命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VIM"><span class="nav-number">3.</span> <span class="nav-text">VIM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发行版"><span class="nav-number">4.</span> <span class="nav-text">发行版</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题记录："><span class="nav-number">4.1.</span> <span class="nav-text">问题记录：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-bios中没有arch引导项或选择arch后，grub-进入rescue模式，提示unknown-file-system"><span class="nav-number">4.1.1.</span> <span class="nav-text">1.bios中没有arch引导项或选择arch后，grub 进入rescue模式，提示unknown file system</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

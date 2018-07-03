@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="大体上可以分为三种：创建型、结构型和行为型 1.单例模式（singleton pattern）12345678910//饿汉public class EagerInitializedSingleton &amp;#123;    private static final EagerInitializedSingleton instance = new EagerInitializedSingleton(">
+<meta name="description" content="六大原则  单一职责原理：一个类只负责一项职责。 里氏替换原则：劲量不要重写父类的已经实现了的方法，可以用接口等其他方法绕开。 依赖倒置原则：高层模块不应该依赖底层模块，二者应依赖其抽象；抽象不应该依赖细节；细节应该依赖抽象。 接口隔离原则：客户端不应该依赖其他不需要的接口；一个类对另一个类的依赖应该建立在最小的接口上。 迪米特法则：又叫做最小知道原则。就是一个类对自己依赖的类知道越少越好。 开">
 <meta name="keywords" content="Java设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javapatten">
 <meta property="og:url" content="http://yoursite.com/2018/07/01/javapatten/index.html">
 <meta property="og:site_name" content="FreaxJJ">
-<meta property="og:description" content="大体上可以分为三种：创建型、结构型和行为型 1.单例模式（singleton pattern）12345678910//饿汉public class EagerInitializedSingleton &amp;#123;    private static final EagerInitializedSingleton instance = new EagerInitializedSingleton(">
+<meta property="og:description" content="六大原则  单一职责原理：一个类只负责一项职责。 里氏替换原则：劲量不要重写父类的已经实现了的方法，可以用接口等其他方法绕开。 依赖倒置原则：高层模块不应该依赖底层模块，二者应依赖其抽象；抽象不应该依赖细节；细节应该依赖抽象。 接口隔离原则：客户端不应该依赖其他不需要的接口；一个类对另一个类的依赖应该建立在最小的接口上。 迪米特法则：又叫做最小知道原则。就是一个类对自己依赖的类知道越少越好。 开">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-03T13:38:07.427Z">
+<meta property="og:updated_time" content="2018-07-03T14:19:09.761Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javapatten">
-<meta name="twitter:description" content="大体上可以分为三种：创建型、结构型和行为型 1.单例模式（singleton pattern）12345678910//饿汉public class EagerInitializedSingleton &amp;#123;    private static final EagerInitializedSingleton instance = new EagerInitializedSingleton(">
+<meta name="twitter:description" content="六大原则  单一职责原理：一个类只负责一项职责。 里氏替换原则：劲量不要重写父类的已经实现了的方法，可以用接口等其他方法绕开。 依赖倒置原则：高层模块不应该依赖底层模块，二者应依赖其抽象；抽象不应该依赖细节；细节应该依赖抽象。 接口隔离原则：客户端不应该依赖其他不需要的接口；一个类对另一个类的依赖应该建立在最小的接口上。 迪米特法则：又叫做最小知道原则。就是一个类对自己依赖的类知道越少越好。 开">
 
 
 
@@ -368,7 +368,14 @@
       
 
       
-        <p> 大体上可以分为三种：创建型、结构型和行为型</p>
+        <p> 六大原则 </p>
+<pre><code>单一职责原理：一个类只负责一项职责。
+里氏替换原则：劲量不要重写父类的已经实现了的方法，可以用接口等其他方法绕开。
+依赖倒置原则：高层模块不应该依赖底层模块，二者应依赖其抽象；抽象不应该依赖细节；细节应该依赖抽象。
+接口隔离原则：客户端不应该依赖其他不需要的接口；一个类对另一个类的依赖应该建立在最小的接口上。
+迪米特法则：又叫做最小知道原则。就是一个类对自己依赖的类知道越少越好。
+开闭原则：尽量通过扩展软件实体行为来实现变化。
+</code></pre><p>可以分为三种：创建型、结构型和行为型</p>
 <p>1.单例模式（singleton pattern）<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//饿汉</span><br><span class="line">public class EagerInitializedSingleton &#123;</span><br><span class="line">   <span class="keyword"> private</span><span class="keyword"> static</span><span class="keyword"> final</span> EagerInitializedSingleton<span class="built_in"> instance </span>=<span class="built_in"> new </span>EagerInitializedSingleton();</span><br><span class="line">    //private<span class="keyword"> constructor</span> to avoid client applications to use<span class="keyword"> constructor</span></span><br><span class="line">   <span class="keyword"> private</span> EagerInitializedSingleton()&#123;&#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword"> public</span><span class="keyword"> static</span> EagerInitializedSingleton getInstance()&#123;</span><br><span class="line">       <span class="built_in"> return </span>instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//懒汉</span><br><span class="line">public class LazyInitializedSingleton &#123;</span><br><span class="line">   <span class="keyword"> private</span><span class="keyword"> static</span> <span class="class">LazyInitializedSingleton instance;</span></span><br><span class="line">	</span><br><span class="line">   <span class="keyword"> private</span> LazyInitializedSingleton()&#123;&#125;</span><br><span class="line">	</span><br><span class="line">    //加synchronized 就是线程安全的 </span><br><span class="line">   <span class="keyword"> public</span><span class="keyword"> static</span> synchronized LazyInitializedSingleton getInstance()&#123;</span><br><span class="line">        if(instance == null)&#123;</span><br><span class="line">           <span class="built_in"> instance </span>=<span class="built_in"> new </span>LazyInitializedSingleton();</span><br><span class="line">        &#125;</span><br><span class="line">       <span class="built_in"> return </span>instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//双重加锁</span><br><span class="line">public<span class="keyword"> static</span> ThreadSafeSingleton getInstanceUsingDoubleLocking()&#123;</span><br><span class="line">    if(instance == null)&#123;</span><br><span class="line">        synchronized (ThreadSafeSingleton.class) &#123;</span><br><span class="line">            if(instance == null)&#123;</span><br><span class="line">               <span class="built_in"> instance </span>=<span class="built_in"> new </span>ThreadSafeSingleton();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="built_in"> return </span>instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -519,7 +526,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -530,7 +537,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -541,7 +548,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
