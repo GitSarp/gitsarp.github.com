@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spring注解," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="spring中文文档  感谢！ 注解获取容器(上下文)123456public static void main(String[] args) &amp;#123;     ApplicationContext ctx        = new AnnotationConfigApplicationContext(AppConfig. class);     MyService myService = c">
+<meta name="keywords" content="Spring注解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring注解">
+<meta property="og:url" content="http://yoursite.com/2018/07/09/Spring注解/index.html">
+<meta property="og:site_name" content="FreaxJJ">
+<meta property="og:description" content="spring中文文档  感谢！ 注解获取容器(上下文)123456public static void main(String[] args) &amp;#123;     ApplicationContext ctx        = new AnnotationConfigApplicationContext(AppConfig. class);     MyService myService = c">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/Users/freaxjj/Downloads/transaction-propagation.png">
+<meta property="og:updated_time" content="2018-07-09T12:39:04.385Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring注解">
+<meta name="twitter:description" content="spring中文文档  感谢！ 注解获取容器(上下文)123456public static void main(String[] args) &amp;#123;     ApplicationContext ctx        = new AnnotationConfigApplicationContext(AppConfig. class);     MyService myService = c">
+<meta name="twitter:image" content="http://yoursite.com/Users/freaxjj/Downloads/transaction-propagation.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/09/Spring注解/"/>
+
+
+
+
+
+  <title>Spring注解 | FreaxJJ</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cd7782b0e9c27941fb5017838cd7e79e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FreaxJJ</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">长风破浪会有时</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/Spring注解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FreaxJJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FreaxJJ">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring注解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-09T20:14:22+08:00">
+                2018-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/09/Spring注解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/09/Spring注解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://wizardforcel.gitbooks.io/spring-doc-3x/" target="_blank" rel="noopener">spring中文文档</a>  感谢！</p>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><h3 id="获取容器-上下文"><a href="#获取容器-上下文" class="headerlink" title="获取容器(上下文)"></a>获取容器(上下文)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line">    ApplicationContext ctx</span><br><span class="line">        = <span class="keyword">new</span> AnnotationConfigApplicationContext(AppConfig. <span class="class"><span class="keyword">class</span>)</span>; </span><br><span class="line">    MyService myService = ctx.getBean(MyService.class); </span><br><span class="line">    myService.doStuff();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h3><ul>
+<li><p><strong>@Scope</strong>注解定义该bean的作用域范围，注解方式如@scope(“prototype”),配置方式<bean scope="xxx" name="...">.</bean></p>
+<ul>
+<li>singleton,容器内只有一个实例，或@Singleton</li>
+<li>prototype,原型模式，每次通过容器的getBean方法获取prototype定义的Bean时，都将产生一个新的Bean实例</li>
+<li><p>request,每一次HTTP请求都会产生一个新的bean，同时该bean仅在当前HTTP request内有效，配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">	<span class="tag">&lt;<span class="name">web-app</span>&gt;</span></span><br><span class="line">   ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.request.RequestContextListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br><span class="line">   ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>session，配置同上，每次HTTP Session都会产生一个新的bean，同时该bean仅在当前HTTP session内有效</p>
+</li>
+<li>global session</li>
+</ul>
+</li>
+<li>Bean注解主要用于方法上，有点类似于工厂方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MyService <span class="title">myService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyServiceImpl();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>和下面的配置类似<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"myService"</span> <span class="attr">class</span>=<span class="string">"com.acme.services.MyServiceImpl"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="AutoWired和-Resource-J2EE注解"><a href="#AutoWired和-Resource-J2EE注解" class="headerlink" title="@AutoWired和@Resource(J2EE注解)"></a>@AutoWired和@Resource(J2EE注解)</h5><ul>
+<li>@Autowired注解默认按照类型装配，如果容器中包含多个同一类型的Bean，那么启动容器时会报找不到指定类型bean的异常，解决办法是结合@Qualified注解进行限定，指定注入的bean名称。</li>
+<li>@Resource如果没有指定name属性，并且按照默认的名称仍然找不到依赖对象时， @Resource注解会回退到按类型装配。但一旦指定了name属性，就只能按名称装配了。<h3 id="控制器注解-Controller"><a href="#控制器注解-Controller" class="headerlink" title="控制器注解@Controller"></a>控制器注解@Controller</h3></li>
+<li><p><strong>@RestController</strong>,@RestController注解相当于@ResponseBody ＋ @Controller</p>
+<ul>
+<li>如果只是使用@RestController注解Controller，则Controller中的方法无法返回jsp页面，配置的视图解析器InternalResourceViewResolver不起作用，返回的内容就是Return 里的内容。</li>
+<li>如果需要返回到指定页面，则需要用 @Controller配合视图解析器InternalResourceViewResolver才行。</li>
+<li>如果需要返回JSON，XML或自定义mediaType内容到页面，则需要在对应的方法上加上@ResponseBody注解。</li>
+</ul>
+</li>
+<li><p>@ModelAttribute</p>
+</li>
+<li>@RequestMapping 既可以作用在<strong>类级别</strong>，也可以作用在方法级别。如果没有指定method，表示都可以接收。(还有变体@GetMapping和@PostMapping)</li>
+<li><strong>@RequestParam</strong>用于方法入参，@RequestParam(value = “name”, required = false) String name,required默认为true，必传</li>
+<li><strong>@PathVariable</strong>,绑定url到参数上，支持正则</li>
+<li><p>方法增加入参ModelMap modelMap，spring会创建实例，modelMap.put()可以用来向页面返回数据</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@RequestMapping</span>(value=<span class="string">"/happy/&#123;dayid&#125;"</span>,method=RequestMethod.GET)</span><br><span class="line">public String findPet(<span class="variable">@PathVariable</span> String dayid, Model mode) &#123;</span><br><span class="line"><span class="comment">//使用@PathVariable注解绑定 &#123;dayid&#125; 到String dayid</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>@RequestBody是指方法参数应该被绑定到HTTP请求Body上。</p>
+</li>
+<li>@ResponseBody的作用是将返回类型直接输入到HTTP response body中，常用来输出JSON数据。</li>
+</ul>
+<h4 id="Component与-Configuration"><a href="#Component与-Configuration" class="headerlink" title="@Component与@Configuration"></a>@Component与@Configuration</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Config</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SimpleBean <span class="title">simpleBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SimpleBean();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SimpleBeanConsumer <span class="title">simpleBeanConsumer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SimpleBeanConsumer(simpleBean());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//@Component则需要这样写，否则就将有两个SimpleBean实例</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Config</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    SimpleBean simpleBean;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SimpleBean <span class="title">simpleBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SimpleBean();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SimpleBeanConsumer <span class="title">simpleBeanConsumer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SimpleBeanConsumer(simpleBean);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="校验"><a href="#校验" class="headerlink" title="校验"></a>校验</h3><ul>
+<li>@Valid (在Controller响应方法的form对应实体入参上加入@Valid注解，在form对应实体的字段上添加@NotNull等注解)<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Null</span> 限制只能为null </span><br><span class="line"><span class="variable">@NotNull</span> 限制必须不为null </span><br><span class="line"><span class="variable">@AssertFalse</span> 限制必须为false </span><br><span class="line"><span class="variable">@AssertTrue</span> 限制必须为true </span><br><span class="line"><span class="variable">@DecimalMax</span>(value) 限制必须为一个不大于指定值的数字 </span><br><span class="line"><span class="variable">@DecimalMin</span>(value) 限制必须为一个不小于指定值的数字 </span><br><span class="line"><span class="variable">@Digits</span>(integer,fraction) 限制必须为一个小数，且整数部分的位数不能超过integer，小数部分的位数不能超过fraction </span><br><span class="line"><span class="variable">@Future</span> 限制必须是一个将来的日期 </span><br><span class="line"><span class="variable">@Max</span>(value) 限制必须为一个不大于指定值的数字 </span><br><span class="line"><span class="variable">@Min</span>(value) 限制必须为一个不小于指定值的数字 </span><br><span class="line"><span class="variable">@Pattern</span>(value) 限制必须符合指定的正则表达式 </span><br><span class="line"><span class="variable">@Size</span>(max,min) 限制字符长度必须在min到max之间 </span><br><span class="line"><span class="variable">@Past</span> 验证注解的元素值（日期类型）比当前时间早 </span><br><span class="line"><span class="variable">@NotEmpty</span> 验证注解的元素值不为null且不为空（字符串长度不为<span class="number">0</span>、集合大小不为<span class="number">0</span>） </span><br><span class="line"><span class="variable">@NotBlank</span> 验证注解的元素值不为空（不为null、去除首位空格后长度为<span class="number">0</span>），不同于<span class="variable">@NotEmpty</span>，<span class="variable">@NotBlank</span>只应用于字符串且在比较时会去除字符串的空格 </span><br><span class="line"><span class="variable">@Email</span> 验证注解的元素值是Email，也可以通过正则表达式和flag指定自定义的email格式</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>eg.<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@ResponseBody</span></span><br><span class="line">   <span class="variable">@PostMapping</span>(value=<span class="string">"/add"</span>)</span><br><span class="line">   public String add(<span class="variable">@Valid</span> Student student,BindingResult bindingResult)&#123; </span><br><span class="line">	<span class="selector-tag">if</span>(bindingResult.hasErrors())&#123;</span><br><span class="line">		.....</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Entity</span></span><br><span class="line"><span class="variable">@Table</span>(name=<span class="string">"t_student"</span>)</span><br><span class="line">public class Student &#123;</span><br><span class="line">   <span class="variable">@Id</span></span><br><span class="line">   <span class="variable">@GeneratedValue</span></span><br><span class="line">   private Integer id;</span><br><span class="line"></span><br><span class="line">   <span class="variable">@NotEmpty</span>(message=<span class="string">"姓名不能为空！"</span>)</span><br><span class="line">   <span class="variable">@Column</span>(length=<span class="number">50</span>)</span><br><span class="line">   private String name;</span><br><span class="line"></span><br><span class="line">   <span class="variable">@NotNull</span>(message=<span class="string">"年龄不能为空！"</span>)</span><br><span class="line">   <span class="variable">@Min</span>(value=<span class="number">18</span>,message=<span class="string">"年龄必须大于18岁！"</span>)</span><br><span class="line">   <span class="variable">@Column</span>(length=<span class="number">50</span>)</span><br><span class="line">   private Integer age;</span><br></pre></td></tr></table></figure>
+<h3 id="其他注解"><a href="#其他注解" class="headerlink" title="其他注解"></a>其他注解</h3><ul>
+<li>@PostConstruct 和 @PreDestroy 方法 实现初始化和销毁bean之前进行的操作 </li>
+<li>lombok注解：可以不用生成get、set和构造方法，idea中安装lombok-plugin插件，另外勾选enable annotation processing<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Getter</span></span><br><span class="line"><span class="variable">@Setter</span></span><br><span class="line"><span class="variable">@NoArgsConstructor</span></span><br><span class="line"><span class="variable">@AllArgsConstructor</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><ul>
+<li><p>开启事务注解&lt;tx:annotation-driven transaction-manager=”transactionManager” /&gt;,用@Transactional</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除失败后回滚</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CompanyServiceImpl</span> <span class="keyword">implements</span> <span class="title">CompanyService</span> &#123;</span></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> CompanyDAO companyDAO;</span><br><span class="line">  <span class="comment">//设置传播、只读属性和回滚策略，回滚可定义其他异常，isolation定义隔离级别，timeout设置超时时间(s)</span></span><br><span class="line">  <span class="meta">@Transactional</span>(propagation = Propagation.REQUIRED, readOnly = <span class="literal">false</span>, rollbackFor = Exception.<span class="keyword">class</span>)</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">int</span> deleteByName(String name) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> result = companyDAO.deleteByName(name);</span><br><span class="line">    <span class="keyword">return</span> company;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>传播级别</p>
+<p>| 事务传播行为类型          | 说明                                                         |<br>| ————————- | ———————————————————— |<br>| PROPAGATION_REQUIRED      | 如果当前没有事务，就新建一个事务，如果已经存在一个事务中，加入到这个事务中。这是最常见的选择。 |<br>| PROPAGATION_SUPPORTS      | 支持当前事务，如果当前没有事务，就以非事务方式执行。         |<br>| PROPAGATION_MANDATORY     | 使用当前的事务，如果当前没有事务，就抛出异常。               |<br>| PROPAGATION_REQUIRES_NEW  | 新建事务，如果当前存在事务，把当前事务挂起。                 |<br>| PROPAGATION_NOT_SUPPORTED | 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。   |<br>| PROPAGATION_NEVER         | 以非事务方式执行，如果当前存在事务，则抛出异常               |<br>| PROPAGATION_NESTED        | 如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行与PROPAGATION_REQUIRED类 似的操作 |</p>
+<p><img src="/Users/freaxjj/Downloads/transaction-propagation.png" alt="transaction-propagation"></p>
+</li>
+<li><p>隔离级别</p>
+<p>| 类型                | 说明                                               |<br>| ——————- | ————————————————– |<br>| DEFAULT             | 采用数据库默认隔离级别                             |<br>| READ_UNCOMMITTED    | 读未提交的数据（会出现脏读取）                     |<br>| READ_COMMITTED      | 读已提交的数据（会出现幻读，即前后两次读的不一样） |<br>| REPEATABLE_READ     | 可重复读，会出现幻读                               |<br>| SERIALIZABLE 串行化 | （对资源消耗较大，一般不使用）                     |</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="FreaxJJ 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="FreaxJJ 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring注解/" rel="tag"># Spring注解</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/08/并发2/" rel="next" title="并发2">
+                <i class="fa fa-chevron-left"></i> 并发2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">FreaxJJ</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#注解"><span class="nav-number">1.</span> <span class="nav-text">注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取容器-上下文"><span class="nav-number">1.1.</span> <span class="nav-text">获取容器(上下文)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用"><span class="nav-number">1.2.</span> <span class="nav-text">通用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#AutoWired和-Resource-J2EE注解"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">@AutoWired和@Resource(J2EE注解)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制器注解-Controller"><span class="nav-number">1.3.</span> <span class="nav-text">控制器注解@Controller</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Component与-Configuration"><span class="nav-number">1.3.1.</span> <span class="nav-text">@Component与@Configuration</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#校验"><span class="nav-number">1.4.</span> <span class="nav-text">校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他注解"><span class="nav-number">1.5.</span> <span class="nav-text">其他注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务"><span class="nav-number">1.6.</span> <span class="nav-text">事务</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FreaxJJ</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://freaxjj.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/07/09/Spring注解/';
+          this.page.identifier = '2018/07/09/Spring注解/';
+          this.page.title = 'Spring注解';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://freaxjj.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
