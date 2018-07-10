@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="sql其他," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、实验说明1.1 实验内容SQL注入攻击通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，本章课程通过 LAMP 搭建 Sql 注入环境，两个实验分别介绍 Sql 注入爆破数据库、Sql 注入绕过验证两个知识点。1.2 实验知识点Sql 注入漏洞的原理Sql 注入点的判断方法Sql 注入漏洞的分类 1.3 实验环境p">
+<meta name="keywords" content="sql其他">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sql 注入基础原理介绍">
+<meta property="og:url" content="http://gitsarp.github.io/sql/sqlInject/index.html">
+<meta property="og:site_name" content="FreaxJJ">
+<meta property="og:description" content="一、实验说明1.1 实验内容SQL注入攻击通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，本章课程通过 LAMP 搭建 Sql 注入环境，两个实验分别介绍 Sql 注入爆破数据库、Sql 注入绕过验证两个知识点。1.2 实验知识点Sql 注入漏洞的原理Sql 注入点的判断方法Sql 注入漏洞的分类 1.3 实验环境p">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3341325-5d580f47215d6a75?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3341325-8821ff02acd6c9d6?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3341325-7365f4a81aea09ae?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3341325-a5a66553e010a0b1?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3341325-9521f26625ce7ec7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3341325-290adb169a53a795?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3341325-05191e835ff12eb5?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3341325-ecb1728c17473a60?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3341325-498039aedd6efcf0?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-07-03T13:37:48.729Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sql 注入基础原理介绍">
+<meta name="twitter:description" content="一、实验说明1.1 实验内容SQL注入攻击通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，本章课程通过 LAMP 搭建 Sql 注入环境，两个实验分别介绍 Sql 注入爆破数据库、Sql 注入绕过验证两个知识点。1.2 实验知识点Sql 注入漏洞的原理Sql 注入点的判断方法Sql 注入漏洞的分类 1.3 实验环境p">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3341325-5d580f47215d6a75?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://gitsarp.github.io/sql/sqlInject/"/>
+
+
+
+
+
+  <title>Sql 注入基础原理介绍 | FreaxJJ</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cd7782b0e9c27941fb5017838cd7e79e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FreaxJJ</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">长风破浪会有时</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://gitsarp.github.io/sql/sqlInject/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FreaxJJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/14067824?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FreaxJJ">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Sql 注入基础原理介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-01T22:03:14+08:00">
+                2018-07-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-03T21:37:48+08:00">
+                2018-07-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sql/" itemprop="url" rel="index">
+                    <span itemprop="name">sql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/sql/sqlInject/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="sql/sqlInject/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一、实验说明<br>1.1 实验内容<br>SQL注入攻击通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，本章课程通过 LAMP 搭建 Sql 注入环境，两个实验分别介绍 Sql 注入爆破数据库、Sql 注入绕过验证两个知识点。<br>1.2 实验知识点<br>Sql 注入漏洞的原理<br>Sql 注入点的判断方法<br>Sql 注入漏洞的分类</p>
+<p>1.3 实验环境<br>python2.7<br>Xfce 终端<br>Firefox 浏览器</p>
+<p>1.4 适合人群<br>本课程难度为简单，属于初级级别课程，适合具有一点 sql 语法基础的用户。<br>如果你没有 sql 的基础，建议你先阅读下述内容：<br><a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">Mysql 入门教程</a></p>
+<p>或学习以下免费课程：<br><a href="https://www.shiyanlou.com/courses/9" target="_blank" rel="noopener">MySQL 基础课程</a></p>
+<p>1.5 代码获取<br>你可以通过下面命令将代码下载到实验楼环境中，作为参照对比进行学习。<br>$ wget <a href="http://labfile.oss.aliyuncs.com/courses/876/dvwa.tar.gz$" target="_blank" rel="noopener">http://labfile.oss.aliyuncs.com/courses/876/dvwa.tar.gz$</a> wget <a href="http://labfile.oss.aliyuncs.com/courses/876/sql2.tar.gz" target="_blank" rel="noopener">http://labfile.oss.aliyuncs.com/courses/876/sql2.tar.gz</a></p>
+<p>二、实验原理<br>Sql 注入攻击是通过将恶意的 Sql 查询或添加语句插入到应用的输入参数中，再在后台 Sql 服务器上解析执行进行的攻击，它目前黑客对数据库进行攻击的最常用手段之一。<br>本课程将带你从介绍 Web 应用运行原理开始，一步一步理解 Sql 注入的由来、原理和攻击方式。<br>三、Web 程序三层架构<br><strong>三层架构</strong>(3-tier architecture<br>) 通常意义上就是将整个业务应用划分为：<br>界面层（User Interface layer）</p>
+<p>业务逻辑层（Business Logic Layer）</p>
+<p>数据访问层（Data access layer）。</p>
+<p>区分层次的目的即为了“高内聚低耦合”的思想。在软件体系架构设计中，分层式结构是最常见，也是最重要的一种结构被应用于众多类型的软件开发。<br>由数据库驱动的Web应用程序依从三层架构的思想也分为了三层：<br>表示层。</p>
+<p>业务逻辑层（又称领域层）</p>
+<p>数据访问层（又称存储层）</p>
+<p>拓扑结构如下图所示<br><img src="http://upload-images.jianshu.io/upload_images/3341325-5d580f47215d6a75?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"><br>在上图中，用户访问实验楼主页进行了如下过程：<br>在 Web 浏览器中输入 <a href="http://www.shiyanlou.com" target="_blank" rel="noopener">www.shiyanlou.com</a><br> 连接到实验楼服务器。</p>
+<p>业务逻辑层的 Web 服务器从本地存储中加载 index.php<br> 脚本并解析。</p>
+<p>脚本连接位于数据访问层的 DBMS<br>（数据库管理系统），并执行 Sql<br> 语句。</p>
+<p>数据访问层的数据库管理系统返回 Sql<br> 语句执行结果给 Web 服务器。</p>
+<p>业务逻辑层的 Web 服务器将 Web 页面封装成 HTML 格式发送给表示层的 Web 浏览器。</p>
+<p>表示层的 Web 浏览器解析 HTML 文件，将内容展示给用户。</p>
+<p>在三层架构中，所有通信都必须要经过中间层，简单地说，三层架构是一种<strong>线性关系</strong>。<br>四、Sql 注入漏洞<br>4.1 Sql 注入产生原因及威胁：<br>刚刚讲过当我们访问动态网页时, Web 服务器会向数据访问层发起 Sql 查询请求，如果权限验证通过就会执行 Sql 语句。<br>这种网站内部直接发送的Sql请求一般不会有危险，但实际情况是很多时候需要<strong>结合</strong>用户的输入数据动态构造 Sql 语句，如果用户输入的数据被构造成恶意 Sql 代码，Web 应用又未对动态构造的 Sql 语句使用的参数进行审查，则会带来意想不到的危险。<br>Sql 注入带来的威胁主要有如下几点<br>猜解后台数据库，这是利用最多的方式，盗取网站的敏感信息。<br>绕过认证，列如绕过验证登录网站后台。<br>注入可以借助数据库的存储过程进行提权等操作</p>
+<p>4.2 Sql 注入示例一.猜解数据库<br>接下来我们通过一个实例，让你更加清楚的理解 <strong>Sql 注入猜解数据库</strong>是如何发生的。<br>如下图所示，先下载文件并解压运行：<br>shiyanlou:~/ $ wget <a href="http://labfile.oss.aliyuncs.com/courses/876/dvwa.tar.gzshiyanlou:~/" target="_blank" rel="noopener">http://labfile.oss.aliyuncs.com/courses/876/dvwa.tar.gzshiyanlou:~/</a> $ tar -zxvf dvwa.tar.gzshiyanlou:~/ $ cd dvwashiyanlou:~/ $ sudo apt-get updateshiyanlou:~/ $ ./deploy.sh</p>
+<p>进入 Firefox 浏览器，输入网址 : localhost/dvwasql , 点击create/Reset Database<br>创建数据库：<br>[图片上传中。。。（2）]<br><img src="http://upload-images.jianshu.io/upload_images/3341325-8821ff02acd6c9d6?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"><br>进入登录界面，默认用户名为 admin<br> 密码为 password</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3341325-7365f4a81aea09ae?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"><br>将 Security 级别调整为 low<br> (有兴趣的同学可以看看其他级别，这里只做入门讲解)<br><img src="http://upload-images.jianshu.io/upload_images/3341325-a5a66553e010a0b1?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"><br>进入 SQL injection<br>页面开始注入：<br><img src="http://upload-images.jianshu.io/upload_images/3341325-9521f26625ce7ec7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"><br>先输入 1 ，查看回显 (URL中ID=1，说明php页面通过get方法传递参数)：<br><img src="http://upload-images.jianshu.io/upload_images/3341325-290adb169a53a795?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"><br>那实际上后台执行了什么样的Sql语句呢？点击 view source<br>查看源代码 ：<br><img src="http://upload-images.jianshu.io/upload_images/3341325-05191e835ff12eb5?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"><br>可以看到，实际执行的Sql语句是：<br>SELECT first_name, last_name FROM users WHERE user_id = ‘1’;</p>
+<p>我们是通过控制参数Id的值来返回我们需要的信息。<br>如果我们不按常理出牌，比如在输入框中输入 1’ order by 1#</p>
+<p>实际执行的Sql语句就会变成:<br>SELECT first_name, last_name FROM users WHERE user_id = ‘1’ order by 1#`;(按照Mysql语法，#后面会被注释掉，使用这种方法屏蔽掉后面的单引号，避免语法错误)</p>
+<p>这条语句的意思是查询users表中user_id为1的数据并按第一字段排行。<br>输入 1’ order by 1#<br>和 1’ order by 2#<br>时都返回正常：<br><img src="http://upload-images.jianshu.io/upload_images/3341325-ecb1728c17473a60?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"><br><img src="http://upload-images.jianshu.io/upload_images/3341325-498039aedd6efcf0?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="此处输入图片的描述"><br>当输入 1’ order by 3#<br>时，返回错误：<br>[图片上传中。。。（11）]<br><strong>由此可知，users表中只有两个字段，数据为两列。</strong><br>接下来我们使用 union select<br>联合查询继续获取信息。<br>union 运算符可以将两个或两个以上 select 语句的查询结果集合合并成一个结果集合显示，即执行联合查询。需要注意在使用 union 查询的时候需要和主查询的列数相同，而我们之前已经知道了主查询列数为 2，接下来就好办了。<br>输入1’ union select database(),user()#<br>进行查询 ：<br>database()将会返回当前网站所使用的数据库名字.<br>user()将会返回执行当前查询的用户名.</p>
+<p>实际执行的Sql语句是 :<br>SELECT first_name, last_name FROM users WHERE user_id = ‘1’ union select database(),user()#`;</p>
+<p>[图片上传中。。。（12）]<br>通过上图返回信息，我们成功获取到：<br>当前网站使用数据库为 dvwa .<br>当前执行查询用户名为 root@localhost .</p>
+<p>同理我们再输入 1’ union select version(),@@version_compile_os#<br>进行查询：<br>version() 获取当前数据库版本.<br>@@version_compile_os 获取当前操作系统。</p>
+<p>实际执行的Sql语句是:<br>SELECT first_name, last_name FROM users WHERE user_id = ‘1’ union select version(),@@version_compile_os#`;</p>
+<p>[图片上传中。。。（13）]<br>通过上图返回信息，我们又成功获取到：<br>当前数据库版本为 : 5.6.31-0ubuntu0.15.10.1.<br>当前操作系统为 : debian-linux-gnu</p>
+<p>接下来我们尝试获取 dvwa 数据库中的表名。<br>information_schema<br> 是 mysql 自带的一张表，这张数据表保存了 Mysql 服务器所有数据库的信息,如数据库名，数据库的表，表栏的数据类型与访问权限等。该数据库拥有一个名为 tables 的数据表，该表包含两个字段 table_name 和 table_schema，分别记录 DBMS 中的存储的表名和表名所在的数据库。<br>我们输入1’ union select table_name,table_schema from information_schema.tables where table_schema= ‘dvwa’#<br>进行查询：<br>实际执行的Sql语句是：<br>SELECT first_name, last_name FROM users WHERE user_id = ‘1’ union select table_name,table_schema from information_schema.tables where table_schema= ‘dvwa’#`;</p>
+<p>[图片上传中。。。（14）]<br>通过上图返回信息，我们再获取到：<br>dvwa 数据库有两个数据表，分别是 guestbook 和 users .</p>
+<p>有些同学肯定还不满足目前获取到的信息，那么我们接下来尝试获取重量级的用户名、密码。<br>由经验我们可以大胆猜测users表的字段为 user 和 password ，所以输入：1’ union select user,password from users#<br>进行查询：<br>实际执行的 Sql 语句是：<br>SELECT first_name, last_name FROM users WHERE user_id = ‘1’ union select user,password from users#`;</p>
+<p>[图片上传中。。。（15）]<br>可以看到成功爆出用户名、密码，密码采用 md5 进行加密，可以到<a href="http://www.cmd5.com" target="_blank" rel="noopener">www.cmd5.com</a><br>进行解密。<br>直此，同学们应该已经对 Sql 注入有了一个大概得了解，也清楚了 Sql 注入的强大。<br>4.3 Sql 注入实例二.验证绕过<br>接下来我们再试试另一个利用 <strong>Sql 漏洞绕过登录验证</strong>的实验。<br>如下图所示，先下载文件并解压运行：<br>shiyanlou:~/ $ wget <a href="http://labfile.oss.aliyuncs.com/courses/876/sql2.tar.gzshiyanlou:~/" target="_blank" rel="noopener">http://labfile.oss.aliyuncs.com/courses/876/sql2.tar.gzshiyanlou:~/</a> $ tar -zxvf sql2.tar.gzshiyanlou:~/ $ cd sql2shiyanlou:~/ $ sudo apt-get update shiyanlou:~/ $ ./deploy.sh</p>
+<p>进入 Firefox 浏览器，输入网址 : localhost/sql2 , 按照下图所示顺序，初始化数据：<br>[图片上传中。。。（16）]<br>[图片上传中。。。（17）]<br>[图片上传中。。。（18）]<br>[图片上传中。。。（19）]<br>准备工作完成之后，我们进入首页发现这是一个普通的登录页面，只要输入正确的用户名和密码就能登录成功。<br>我们先尝试随意输入用户名 123 和密码 123 登录：<br>[图片上传中。。。（20）]<br>从错误页面中我们无法获取到任何信息。<br>看看后台代码如何做验证的：<br>[图片上传中。。。（21）]<br>实际执行的操作时：<br>select * from users where username=’123’ and password=’123’</p>
+<p>当查询到数据表中存在同时满足 username 和 password 字段时，会返回登录成功。<br>按照第一个实验的思路，我们尝试在用户名中输入 123’ or 1=1 #<br>, 密码同样输入 123’ or 1=1 #<br> ：<br>[图片上传中。。。（22）]<br>[图片上传中。。。（23）]<br>为什么能够成功登陆呢？因为实际执行的语句是：<br>select * from users where username=’123’ or 1=1 #’ and password=’123’ or 1=1 #’</p>
+<p>按照 Mysql 语法，# 后面的内容会被忽略，所以以上语句等同于（实际上密码框里不输入任何东西也一样）：<br>select * from users where username=’123’ or 1=1</p>
+<p>由于判断语句 or 1=1 恒成立，所以结果当然返回真，成功登录。<br>我们再尝试不使用 # 屏蔽单引号，采用手动闭合的方式：<br>我们尝试在用户名中输入 123’ or ‘1’=’1<br>, 密码同样输入 123’ or ‘1’=’1<br> （不能少了单引号，否则会有语法错误）：<br>[图片上传中。。。（24）]<br>[图片上传中。。。（25）]<br>实际执行的 Sql 语句是：<br>select * from users where username=’123’ or ‘1’=’1’ and password=’123’ or ‘1’=’1`</p>
+<p>看到了吗？两个 or 语句使 and 前后两个判断永远恒等于真，所以能够成功登录。<br>还有很多其他 Mysql 语句可以巧妙的绕过验证，同学们可以发散自己的思维进行尝试。<br>五、判断 Sql 注入点<br>通常情况下，可能存在 Sql 注入漏洞的 Url 是类似这种形式 ：<a href="http://xxx.xxx.xxx/abcd.php?id=XX" target="_blank" rel="noopener">http://xxx.xxx.xxx/abcd.php?id=XX</a></p>
+<p>对 Sql 注入的判断，主要有两个方面：<br>判断该带参数的 Url 是否存在 Sql 注入？<br>如果存在 Sql 注入，那么属于哪种 Sql 注入？</p>
+<p>可能存在 Sql 注入攻击的 ASP/PHP/JSP 动态网页中，一个动态网页中可能只有一个参数，有时可能有多个参数。有时是整型参数，有时是字符串型参数，不能一概而论。总之只要是带有参数的 动态网页且此网页访问了数据库，那么就有可能存在 Sql 注入。如果程序员没有足够的安全意识，没有进行必要的字符过滤，存在SQL注入的可能性就非常大。<br>5.1 判断是否存在 Sql 注入漏洞<br>最为经典的<strong>单引号判断法</strong>：<br>在参数后面加上单引号,比如:<br><a href="http://xxx/abc.php?id=1&#39;" target="_blank" rel="noopener">http://xxx/abc.php?id=1&#39;</a></p>
+<p>如果页面返回错误，则存在 Sql 注入。<br>原因是无论字符型还是整型都会因为单引号个数不匹配而报错。<br>（如果未报错，不代表不存在 Sql 注入，因为有可能页面对单引号做了过滤，这时可以使用判断语句进行注入，因为此为入门基础课程，就不做深入讲解了）<br>5.2 判断 Sql 注入漏洞的类型<br>通常 Sql 注入漏洞分为 2 种类型：<br>数字型<br>字符型</p>
+<p>其实所有的类型都是根据数据库本身表的类型所产生的，在我们创建表的时候会发现其后总有个数据类型的限制，而不同的数据库又有不同的数据类型，但是无论怎么分<strong>常用</strong>的查询数据类型总是以数字与字符来区分的，所以就会产生注入点为何种类型。<br>[图片上传中。。。（26）]<br>5.2.1 数字型判断：<br>当输入的参 x 为整型时，通常 abc.php 中 Sql 语句类型大致如下：<br>select * from &lt;表名&gt; where id = x</p>
+<p>这种类型可以使用经典的 and 1=1<br> 和 and 1=2<br> 来判断：<br>Url 地址中输入 <a href="http://xxx/abc.php?id=" target="_blank" rel="noopener">http://xxx/abc.php?id=</a> x and 1=1<br> 页面依旧运行正常，继续进行下一步。</p>
+<p>Url 地址中继续输入 <a href="http://xxx/abc.php?id=" target="_blank" rel="noopener">http://xxx/abc.php?id=</a> x and 1=2<br> 页面运行错误，则说明此 Sql 注入为数字型注入。</p>
+<p>原因如下：<br>当输入 and 1=1<br>时，后台执行 Sql 语句：<br>select * from &lt;表名&gt; where id = x and 1=1</p>
+<p>没有语法错误且逻辑判断为正确，所以返回正常。<br>当输入 and 1=2<br>时，后台执行 Sql 语句：<br>select * from &lt;表名&gt; where id = x and 1=2</p>
+<p>没有语法错误但是逻辑判断为假，所以返回错误。<br>我们再使用假设法：如果这是字符型注入的话，我们输入以上语句之后应该出现如下情况：<br>select <em> from &lt;表名&gt; where id = ‘x and 1=1’ select </em> from &lt;表名&gt; where id = ‘x and 1=2’</p>
+<p>查询语句将 and 语句全部转换为了字符串，并没有进行 and 的逻辑判断，所以不会出现以上结果，故假设是不成立的。<br>5.2.2 字符型判断：<br>当输入的参 x 为字符型时，通常 abc.php 中 SQL 语句类型大致如下：<br>select * from &lt;表名&gt; where id = ‘x’</p>
+<p>这种类型我们同样可以使用 and ‘1’=’1<br> 和 and ‘1’=’2<br>来判断：<br>Url 地址中输入 <a href="http://xxx/abc.php?id=" target="_blank" rel="noopener">http://xxx/abc.php?id=</a> x’ and ‘1’=’1<br> 页面运行正常，继续进行下一步。</p>
+<p>Url 地址中继续输入 <a href="http://xxx/abc.php?id=" target="_blank" rel="noopener">http://xxx/abc.php?id=</a> x’ and ‘1’=’2<br> 页面运行错误，则说明此 Sql 注入为字符型注入。</p>
+<p>原因如下：<br>当输入 and ‘1’=’1<br>时，后台执行 Sql 语句：<br>select * from &lt;表名&gt; where id = ‘x’ and ‘1’=’1’</p>
+<p>语法正确，逻辑判断正确，所以返回正确。<br>当输入 and ‘1’=’2<br>时，后台执行 Sql 语句：<br>select * from &lt;表名&gt; where id = ‘x’ and ‘1’=’2’</p>
+<p>语法正确，但逻辑判断错误，所以返回正确。同学们同样可以使用假设法来验证。<br>六、 总结<br>sql注入常用技术有段还包括：<br>采用非主流通道技术<br>避开输入过滤技术<br>使用特殊的字符<br>强制产生错误<br>使用条件语句<br>利用存储过程<br>推断技术<br>……..</p>
+<p>内容转载自实验楼</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>鼓励</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="FreaxJJ 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="FreaxJJ 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    FreaxJJ
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://gitsarp.github.io/sql/sqlInject/" title="Sql 注入基础原理介绍">http://gitsarp.github.io/sql/sqlInject/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sql其他/" rel="tag"># sql其他</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Java/JVM/" rel="next" title="JVM">
+                <i class="fa fa-chevron-left"></i> JVM
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Java/concurrent/" rel="prev" title="并发编程">
+                并发编程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars3.githubusercontent.com/u/14067824?s=460&v=4"
+                alt="FreaxJJ" />
+            
+              <p class="site-author-name" itemprop="name">FreaxJJ</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://github.com/gitsarp" title="Github" target="_blank">Github</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="mailto:metamacro@foxmail.com" title="Email" target="_blank">Email</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jm.taobao.org" title="阿里中间件" target="_blank">阿里中间件</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.itfanr.cc" title="IT范儿" target="_blank">IT范儿</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FreaxJJ</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://freaxjj.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://gitsarp.github.io/sql/sqlInject/';
+          this.page.identifier = 'sql/sqlInject/';
+          this.page.title = 'Sql 注入基础原理介绍';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://freaxjj.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
