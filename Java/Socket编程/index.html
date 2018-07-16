@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="直接上代码  客户端 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859public class MyClient &amp;#123;    String host;    int port;    Socket socket;    i">
+<meta name="description" content="传统阻塞方式直接上代码  客户端 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859public class MyClient &amp;#123;    String host;    int port;    Socket socket">
 <meta name="keywords" content="JavaSocket">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java socket编程">
 <meta property="og:url" content="http://gitsarp.github.io/Java/Socket编程/index.html">
 <meta property="og:site_name" content="FreaxJJ">
-<meta property="og:description" content="直接上代码  客户端 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859public class MyClient &amp;#123;    String host;    int port;    Socket socket;    i">
+<meta property="og:description" content="传统阻塞方式直接上代码  客户端 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859public class MyClient &amp;#123;    String host;    int port;    Socket socket">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-11T14:18:18.744Z">
+<meta property="og:updated_time" content="2018-07-16T16:10:26.020Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java socket编程">
-<meta name="twitter:description" content="直接上代码  客户端 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859public class MyClient &amp;#123;    String host;    int port;    Socket socket;    i">
+<meta name="twitter:description" content="传统阻塞方式直接上代码  客户端 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859public class MyClient &amp;#123;    String host;    int port;    Socket socket">
 
 
 
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-11T22:18:18+08:00">
-                2018-07-11
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-17T00:10:26+08:00">
+                2018-07-17
               </time>
             
           </span>
@@ -426,10 +426,10 @@
       
 
       
-        <p>直接上代码</p>
+        <h3 id="传统阻塞方式"><a href="#传统阻塞方式" class="headerlink" title="传统阻塞方式"></a>传统阻塞方式</h3><p>直接上代码</p>
 <ul>
 <li><p>客户端</p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class MyClient &#123;</span><br><span class="line">    <span class="keyword">String</span> host;</span><br><span class="line">    <span class="built_in">int</span> port;</span><br><span class="line">    Socket socket;</span><br><span class="line">    <span class="built_in">int</span> timeOut=<span class="number">10000</span>;</span><br><span class="line">    <span class="keyword">BufferedReader</span> bufferedReader;</span><br><span class="line">    PrintStream printStream;</span><br><span class="line">    <span class="keyword">BufferedReader</span> receive;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> MyClient(<span class="keyword">String</span> host, <span class="built_in">int</span> port) &#123;</span><br><span class="line">        <span class="keyword">this</span>.host = host;</span><br><span class="line">        <span class="keyword">this</span>.port = port;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            socket=<span class="keyword">new</span> Socket(host,port);</span><br><span class="line">            socket.setSoTimeout(timeOut);<span class="comment">//设置接收响应的超时时间</span></span><br><span class="line">            bufferedReader=<span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> InputStreamReader(System.in));<span class="comment">//用户输入</span></span><br><span class="line">            printStream=<span class="keyword">new</span> PrintStream(socket.getOutputStream());<span class="comment">//响应流</span></span><br><span class="line">            receive=<span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> InputStreamReader(socket.getInputStream()));<span class="comment">//响应流</span></span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> sendAndReceive() <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="built_in">boolean</span> bye=<span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">String</span> message;</span><br><span class="line">        <span class="keyword">while</span> (!bye)&#123;</span><br><span class="line">            System.out.<span class="built_in">println</span>(<span class="string">"input your message..."</span>);</span><br><span class="line">            message=bufferedReader.readLine();</span><br><span class="line">            <span class="keyword">if</span>(message.equals(<span class="string">""</span>)||message.isEmpty())</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span>(message.equals(<span class="string">"bye"</span>))</span><br><span class="line">                bye=<span class="keyword">true</span>;</span><br><span class="line">            printStream.<span class="built_in">println</span>(message);</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                message=receive.readLine();</span><br><span class="line">                System.out.<span class="built_in">println</span>(<span class="string">"receive:"</span>+message);</span><br><span class="line">            &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                System.out.<span class="built_in">println</span>(<span class="string">"response timeout"</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        printStream.close();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            socket.close();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args)&#123;</span><br><span class="line">        MyClient myClient=<span class="keyword">new</span> MyClient(<span class="string">"127.0.0.1"</span>,<span class="number">8085</span>);</span><br><span class="line">        <span class="comment">//MyClient myClient2=new MyClient("127.0.0.1",8085);</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            myClient.sendAndReceive();</span><br><span class="line">            <span class="comment">//myClient2.sendAndReceive();</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class MyClient &#123;</span><br><span class="line">    <span class="keyword">String</span> host;</span><br><span class="line">    <span class="built_in">int</span> port;</span><br><span class="line">    Socket socket;</span><br><span class="line">    <span class="built_in">int</span> timeOut=<span class="number">10000</span>;</span><br><span class="line">    <span class="keyword">BufferedReader</span> bufferedReader;</span><br><span class="line">    PrintStream printStream;</span><br><span class="line">    <span class="keyword">BufferedReader</span> receive;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> MyClient(<span class="keyword">String</span> host, <span class="built_in">int</span> port) &#123;</span><br><span class="line">        <span class="keyword">this</span>.host = host;</span><br><span class="line">        <span class="keyword">this</span>.port = port;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            socket=<span class="keyword">new</span> Socket(host,port);</span><br><span class="line">            socket.setSoTimeout(timeOut);<span class="comment">//设置接收响应的超时时间</span></span><br><span class="line">            bufferedReader=<span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> InputStreamReader(System.in));<span class="comment">//用户输入</span></span><br><span class="line">            printStream=<span class="keyword">new</span> PrintStream(socket.getOutputStream());<span class="comment">//响应流</span></span><br><span class="line">            receive=<span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> InputStreamReader(socket.getInputStream()));<span class="comment">//响应流</span></span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> sendAndReceive() <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="built_in">boolean</span> bye=<span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">String</span> message;</span><br><span class="line">        <span class="keyword">while</span> (!bye)&#123;</span><br><span class="line">            System.out.<span class="built_in">println</span>(<span class="string">"input your message..."</span>);</span><br><span class="line">            message=bufferedReader.readLine();</span><br><span class="line">            <span class="keyword">if</span>(message.equals(<span class="string">""</span>)||message.isEmpty())</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span>(message.equals(<span class="string">"bye"</span>))</span><br><span class="line">                bye=<span class="keyword">true</span>;</span><br><span class="line">            printStream.<span class="built_in">println</span>(message);</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                message=receive.readLine();</span><br><span class="line">                System.out.<span class="built_in">println</span>(<span class="string">"receive:"</span>+message);</span><br><span class="line">            &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                System.out.<span class="built_in">println</span>(<span class="string">"response timeout"</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        printStream.close();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            socket.close();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args)&#123;</span><br><span class="line">        MyClient myClient=<span class="keyword">new</span> MyClient(<span class="string">"127.0.0.1"</span>,<span class="number">8085</span>);</span><br><span class="line">        <span class="comment">//MyClient myClient2=new MyClient("127.0.0.1",8085);</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            myClient.sendAndReceive();</span><br><span class="line">            <span class="comment">//myClient2.sendAndReceive();</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>服务端线程</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class MyServerThread implements Runnable&#123;</span><br><span class="line">    Socket client;</span><br><span class="line">    BufferedReader req;</span><br><span class="line">    String reqMsg;</span><br><span class="line">    PrintStream out;</span><br><span class="line"></span><br><span class="line">    public MyServerThread(Socket client) &#123;</span><br><span class="line">        this.client = client;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="builtin-name">run</span>() &#123;</span><br><span class="line">        boolean <span class="attribute">endFlag</span>=<span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">while</span> (endFlag)&#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                <span class="attribute">req</span>=new BufferedReader(new InputStreamReader(client.getInputStream()));</span><br><span class="line">                <span class="attribute">reqMsg</span>=req.readLine();</span><br><span class="line">                <span class="keyword">if</span>(<span class="attribute">reqMsg</span>==null||reqMsg.equals("bye"))</span><br><span class="line">                    <span class="attribute">endFlag</span>=<span class="literal">false</span>;</span><br><span class="line">                <span class="attribute">out</span>=new PrintStream(client.getOutputStream());</span><br><span class="line">                out.println(<span class="string">"server resp:"</span>+reqMsg);</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">                <span class="attribute">endFlag</span>=<span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        out.close();</span><br><span class="line">        try &#123;</span><br><span class="line">            client.close();</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -524,6 +524,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/Java/rocketmq/" rel="prev" title="rocketmq">
+                rocketmq <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -584,8 +588,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -604,7 +617,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -626,7 +639,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -690,6 +703,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#传统阻塞方式"><span class="nav-number">1.</span> <span class="nav-text">传统阻塞方式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
