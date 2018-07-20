@@ -353,8 +353,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-17T00:05:08+08:00">
-                2018-07-17
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-20T20:01:01+08:00">
+                2018-07-20
               </time>
             
           </span>
@@ -422,11 +422,10 @@
       
         
           
-          rocketmqquick-start注意安装要求，maven是3.2.X否则可能会有问题(我的3.5.3运行quickstart的Consumer就有问题)
-编译安装4.2.0版本：
+          rocketmqquick-start
 
-git clone https://github.com/apache/rocketmq.git
-编译 mvn 
+队列集合称为Topic，Consumer如果做广播消费，则一个consumer实例消费这个Topic对应的所有队列，如果做集群消费，则多个Consumer实例平均消费这个topic对应的队列集合。
+Name Server是一个几乎无状态节点，可集群部署，节点
           ...
           <!--noindex-->
           <div class="post-button text-center">
