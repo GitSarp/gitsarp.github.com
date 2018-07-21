@@ -1175,7 +1175,7 @@ q：仅仅显示pid；-m:
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://gitsarp.github.io/Java/多线程2/">
+    <link itemprop="mainEntityOfPage" href="http://gitsarp.github.io/Java/多线程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FreaxJJ">
@@ -1194,7 +1194,7 @@ q：仅仅显示pid；-m:
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Java/多线程2/" itemprop="url">并发2</a></h1>
+                <a class="post-title-link" href="/Java/多线程/" itemprop="url">多线程</a></h1>
         
 
         <div class="post-meta">
@@ -1206,8 +1206,8 @@ q：仅仅显示pid；-m:
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-08T10:37:20+08:00">
-                2018-07-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-03T21:25:48+08:00">
+                2018-07-03
               </time>
             
 
@@ -1222,8 +1222,8 @@ q：仅仅显示pid；-m:
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-08T10:40:31+08:00">
-                2018-07-08
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-21T12:04:36+08:00">
+                2018-07-21
               </time>
             
           </span>
@@ -1259,9 +1259,9 @@ q：仅仅显示pid；-m:
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Java/多线程2/#comments" itemprop="discussionUrl">
+                <a href="/Java/多线程/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="Java/多线程2/" itemprop="commentCount"></span>
+                        data-disqus-identifier="Java/多线程/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1291,14 +1291,16 @@ q：仅仅显示pid；-m:
       
         
           
-          线程同步的方法同步是一种高开销的操作，因此应该尽量减少同步的内容。
-
-synchronized可以用在方法或者代码块(颗粒更细一点)上
-volatile用在变量上，不能用在final类型的变量，使用volatile修饰相当于告诉虚拟机该域可能会被其他线程更新， 因此每次使用该变量都要去主存获取，而不
+          线程状态
+实现方式
+继承自Thread类(不能线程共享)
+实现Runnable接口(不可以返回值)
+实现Callable接口(可以抛出异常、返回值)
+ThreadPoolExecutor(线程池)  常见四种线程池:  CachedThreadPool:线程数无限制;有空闲线程则复用空闲线程，若无空
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Java/多线程2/#more" rel="contents">
+            <a class="btn" href="/Java/多线程/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1390,7 +1392,7 @@ volatile用在变量上，不能用在final类型的变量，使用volatile修�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
