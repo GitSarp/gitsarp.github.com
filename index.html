@@ -528,7 +528,7 @@ Broker分为Master与Slave(主从配置)，一个Master可以对应多个Slave�
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-21T18:36:23+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-21T19:10:31+08:00">
                 2018-07-21
               </time>
             
@@ -598,7 +598,9 @@ Broker分为Master与Slave(主从配置)，一个Master可以对应多个Slave�
         
           
           线程状态
-wait()和sleep的区别最大区别，wait()会释放锁，在被唤醒后再申请锁，而sleep是在synchronized中，不会释放锁123　sleep()使当前线程进入停滞状态（阻塞当前线程），让出CUP的使用、目的是不让当前线程独自霸占该进程所获的CPU资源，以留一定时间给其他线程执
+wait()和sleep()最大区别，wait()会释放锁，在被唤醒后再申请锁，而sleep若是在synchronized中，不会释放锁
+
+sleep()使当前线程进入停滞状态（阻塞当前线程），让出CUP的使用、目的是不让当前线程独自霸占该进程所获的CPU资源，以留一定时间给其他线程执行的
           ...
           <!--noindex-->
           <div class="post-button text-center">
