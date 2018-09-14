@@ -90,7 +90,7 @@
 <meta property="og:description" content="git基础——持续更新文档 中文文档 常用命令   Workspace：工作区 Index / Stage：暂存区 Repository：仓库区（或本地仓库） Remote：远程仓库   起步 1234567891011121314151617181920212223242526272829303132333435&amp;gt; # 显示当前的Git配置&amp;gt; $ git config --list&amp;">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015120901.png">
-<meta property="og:updated_time" content="2018-08-29T15:17:29.446Z">
+<meta property="og:updated_time" content="2018-09-14T06:34:47.920Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git基础——持续更新">
 <meta name="twitter:description" content="git基础——持续更新文档 中文文档 常用命令   Workspace：工作区 Index / Stage：暂存区 Repository：仓库区（或本地仓库） Remote：远程仓库   起步 1234567891011121314151617181920212223242526272829303132333435&amp;gt; # 显示当前的Git配置&amp;gt; $ git config --list&amp;">
@@ -356,8 +356,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-29T23:17:29+08:00">
-                2018-08-29
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-14T14:34:47+08:00">
+                2018-09-14
               </time>
             
           </span>
@@ -511,6 +511,13 @@
 <li>在你解决了所有文件里的冲突之后，对每个文件使用 git add 命令来将其标记为冲突已解决。 一旦暂存这些原本有冲突的文件，Git 就会将它们标记为冲突已解决。</li>
 <li>图形化工具来解决冲突，你可以运行 git mergetool（mac默认opendiff ）</li>
 <li>git commit</li>
+</ul>
+<h4 id="Mac删除-DS-Store"><a href="#Mac删除-DS-Store" class="headerlink" title="Mac删除.DS_Store"></a>Mac删除.DS_Store</h4><p>删除<strong>项目中的</strong>所有.DS_Store。</p>
+<ul>
+<li>find . -name .DS_Store -print0 | xargs -0 git rm -f –ignore-unmatch</li>
+<li>echo .DS_Store &gt;&gt; ~/.gitignore</li>
+<li>git commit -m ‘delete .DS_Store’</li>
+<li>git push</li>
 </ul>
 
       
@@ -784,7 +791,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#git基础——持续更新"><span class="nav-number">1.</span> <span class="nav-text">git基础——持续更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">2.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#起步"><span class="nav-number">3.</span> <span class="nav-text">起步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#别名"><span class="nav-number">3.1.</span> <span class="nav-text">别名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程仓库"><span class="nav-number">3.2.</span> <span class="nav-text">远程仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取消暂存"><span class="nav-number">3.3.</span> <span class="nav-text">取消暂存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签"><span class="nav-number">4.</span> <span class="nav-text">标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看提交日志"><span class="nav-number">5.</span> <span class="nav-text">查看提交日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支合并"><span class="nav-number">6.</span> <span class="nav-text">分支合并</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决冲突"><span class="nav-number">6.1.</span> <span class="nav-text">解决冲突</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#git基础——持续更新"><span class="nav-number">1.</span> <span class="nav-text">git基础——持续更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">2.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#起步"><span class="nav-number">3.</span> <span class="nav-text">起步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#别名"><span class="nav-number">3.1.</span> <span class="nav-text">别名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程仓库"><span class="nav-number">3.2.</span> <span class="nav-text">远程仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取消暂存"><span class="nav-number">3.3.</span> <span class="nav-text">取消暂存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签"><span class="nav-number">4.</span> <span class="nav-text">标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看提交日志"><span class="nav-number">5.</span> <span class="nav-text">查看提交日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支合并"><span class="nav-number">6.</span> <span class="nav-text">分支合并</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决冲突"><span class="nav-number">6.1.</span> <span class="nav-text">解决冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mac删除-DS-Store"><span class="nav-number">6.2.</span> <span class="nav-text">Mac删除.DS_Store</span></a></li></ol></li></ol></div>
             
 
           </div>
