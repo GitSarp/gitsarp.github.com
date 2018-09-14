@@ -81,18 +81,20 @@
 
 
 
-<meta name="description" content="使用教程 dokcer基础 docker system df可以列出虚拟机实际占用磁盘的大小，而docker images的空间和可能会很大容器操作 docker run -d ….-d后台运行容器，输入的结果不会打印到宿主机上，可以通过docker container ls查看容器信息，docker container logs查看输出信息 docker container stop 来终止一个">
+<meta name="description" content="缓存数据量大，不怎么变的数据，如评论等 redisvalue支持的数据类型：基本命令：  set key value;get key   mset key1 value1 … keyN valueN 一次设置多个key的值    mget key1 key2 … keyN 一次获取多个key的值   rename oldkey newkey    改名字  dbsize 返回当前数据库的key数量">
 <meta name="keywords" content="Blog,Tech">
 <meta property="og:type" content="website">
 <meta property="og:title" content="FreaxJJ">
-<meta property="og:url" content="http://gitsarp.github.io/unfinished/docker.html">
+<meta property="og:url" content="http://gitsarp.github.io/sources/unfinished/redis缓存.html">
 <meta property="og:site_name" content="FreaxJJ">
-<meta property="og:description" content="使用教程 dokcer基础 docker system df可以列出虚拟机实际占用磁盘的大小，而docker images的空间和可能会很大容器操作 docker run -d ….-d后台运行容器，输入的结果不会打印到宿主机上，可以通过docker container ls查看容器信息，docker container logs查看输出信息 docker container stop 来终止一个">
+<meta property="og:description" content="缓存数据量大，不怎么变的数据，如评论等 redisvalue支持的数据类型：基本命令：  set key value;get key   mset key1 value1 … keyN valueN 一次设置多个key的值    mget key1 key2 … keyN 一次获取多个key的值   rename oldkey newkey    改名字  dbsize 返回当前数据库的key数量">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-22T11:32:45.854Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20161128164051439?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2018-07-27T01:55:00.454Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FreaxJJ">
-<meta name="twitter:description" content="使用教程 dokcer基础 docker system df可以列出虚拟机实际占用磁盘的大小，而docker images的空间和可能会很大容器操作 docker run -d ….-d后台运行容器，输入的结果不会打印到宿主机上，可以通过docker container ls查看容器信息，docker container logs查看输出信息 docker container stop 来终止一个">
+<meta name="twitter:description" content="缓存数据量大，不怎么变的数据，如评论等 redisvalue支持的数据类型：基本命令：  set key value;get key   mset key1 value1 … keyN valueN 一次设置多个key的值    mget key1 key2 … keyN 一次获取多个key的值   rename oldkey newkey    改名字  dbsize 返回当前数据库的key数量">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20161128164051439?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 
 
 
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://gitsarp.github.io/unfinished/docker.html"/>
+  <link rel="canonical" href="http://gitsarp.github.io/sources/unfinished/redis缓存.html"/>
 
 
 
@@ -314,34 +316,90 @@
       <div class="post-body">
         
         
-          <p><a href="https://yeasy.gitbooks.io/docker_practice/image/list.html" target="_blank" rel="noopener">使用教程</a></p>
-<h3 id="dokcer基础"><a href="#dokcer基础" class="headerlink" title="dokcer基础"></a>dokcer基础</h3><ul>
-<li>docker system df<br>可以列出虚拟机实际占用磁盘的大小，而docker images的空间和可能会很大<h4 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h4></li>
-<li>docker run -d ….<br>-d后台<strong>运行容器</strong>，输入的结果不会打印到宿主机上，可以通过docker container ls查看容器信息，docker container logs查看输出信息</li>
-<li>docker container stop 来终止一个运行中的容器。<br>当 Docker 容器中指定的应用终结时，容器也自动终止。<br>终止状态的容器可以用 docker container ls -a查看</li>
-<li>docker container start 命令来启动终止状态的容器。</li>
-<li>docker exec -it 容器名 bash<br>进入容器</li>
-<li>docker container rm  容器名  删除终止状态的容器加-f删除运行中的容器</li>
-<li>docker container prune删除所有运行态容器</li>
+          <h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>数据量大，不怎么变的数据，如评论等</p>
+<h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><p>value支持的数据类型：<br>基本命令：</p>
+<ul>
+<li><p>set key value;get key</p>
+</li>
+<li><p><strong> mset key1 value1 … keyN valueN 一次设置多个key的值 </strong></p>
+</li>
+<li><p><strong> mget key1 key2 … keyN 一次获取多个key的值</strong> </p>
+</li>
+<li><p>rename oldkey newkey    改名字</p>
+</li>
+<li><p>dbsize 返回当前数据库的key数量</p>
+</li>
+<li><p>keys pattern           返回匹配指定正则表达式的所有key，如<strong>keys *返回所有key</strong></p>
+</li>
+<li><p>type key                返回给定key的value类型</p>
+</li>
+<li><p>exists key           测试指定key是否存在</p>
+</li>
+<li><p>del key </p>
+</li>
+<li><p><strong>expire key n</strong>      为key指定过期时间n秒</p>
+</li>
+<li><p><strong>ttl key</strong>                 返回key的剩余过期秒数</p>
+</li>
+<li><p><strong>select db-index</strong>         选择数据库，不能超过15</p>
+</li>
+<li><p>move key db-index      将key从当前数据库移动到指定数据库</p>
+</li>
+<li><p><strong>flushdb</strong>                删除当前数据库的所有key</p>
+</li>
+<li><p>flushall               删除所有数据库的所有key</p>
+</li>
+<li><p><strong> incr key 对key的值做加加操作，并返回新的值</strong></p>
+</li>
+<li><p><strong>incrby key n 加n，返回新值</strong></p>
+</li>
+<li><p><strong>decr key 同上，但做的是减减操作</strong></p>
+</li>
+<li><p><strong>decrby key n 减n，返回新值 </strong></p>
+</li>
+<li><p>append key value 给指定key的字符串追加value </p>
+</li>
+<li><p>substr key start end 返回截取过的key的字符串值 ，如substr key 0 4返回前五位</p>
+</li>
 </ul>
-<h3 id="部署Web项目到docker"><a href="#部署Web项目到docker" class="headerlink" title="部署Web项目到docker"></a>部署Web项目到docker</h3><ol>
-<li><p>下载镜像<br>docker pull tomcat[:version]<br>docker images列出所有已安装镜像</p>
-</li>
-<li><p>运行容器测试<br>docker run -it –rm -p 8888:8080 tomcat[:version]<br>-i：交互式操作，-t: 终端<br>–rm参数表示container结束时,Docker会自动清理其所产生的数据。<br><a href="http://localhost:8888访问" target="_blank" rel="noopener">http://localhost:8888访问</a></p>
-</li>
-</ol>
-<ol start="3">
-<li><p>创建容器，将服务器或本地目录(含war包)映射到镜像目录(/usr/Downloads)<br>docker run –name dockertomcat(容器名) -p 8888:8080 -d -v /Users/feraxjj/Strom/dockerwar:/usr/Downloads tomcat[:version]</p>
-</li>
-<li><p>进入创建的容器dockertomcat<br>docker exec -it dockertomcat /bin/bash</p>
-</li>
-<li><p>将war包复制到镜像的tocat目录<br>cp /usr/Downloads/dockertomcat.war /usr/local/tomcat/webapps/</p>
-</li>
-<li><p>关闭<br>exit退出，docker stop dockertomcat关闭容器</p>
-</li>
-<li><p>保存镜像，提交到自己的docker账户下<br>docker commit -a “freaxjj” -m “from tomcat latest,with a maven simple webapp” dockertomcat dockerdockermeta/helloworldwebapp:0.0.1<br>docker images可以看到多出刚刚创建的镜像<br>docker login登录账户，docker push helloworldwebapp:0.0.1就可以将镜像上传了(如果镜像的名字不是已docker ID开头的话会报错)</p>
-</li>
-</ol>
+<h4 id="list操作指令"><a href="#list操作指令" class="headerlink" title="list操作指令"></a>list操作指令</h4><p><strong>lpush key string         在key对应list的头部添加字符串元素</strong></p>
+<p><strong>lpop key                      从list的头部删除元素，并返回删除元素</strong> </p>
+<p><strong>rpush key string         在key对应list的尾部添加字符串元素</strong> </p>
+<p><strong>rpop key                 从list的尾部删除元素，并返回删除元素</strong> </p>
+<p><strong>llen key 返回 key        对应list的长度，key不存在返回0，如果key对应类型不是list返回错误</strong> </p>
+<p><strong>lrange key start end     返回指定区间内的元素，下标从0开始</strong> </p>
+<p><strong>ltrim key start end         截取list，保留指定区间内元素</strong> </p>
+<p>可以实现排行榜，将前n名的数据存储在list中</p>
+<h4 id="Set操作"><a href="#Set操作" class="headerlink" title="Set操作"></a>Set操作</h4><p>最多包含2^23-1个元素</p>
+<p><strong>sadd key member           添加一个string元素到key对应的set集合中，成功返回1，如果元素已经在集合中返回0，key对应的set不存在，则创建一个只包含member元素的集合。</strong></p>
+<p><strong>srem key member [member]  从key对应set中移出给定元素，成功返回1</strong></p>
+<p><strong>smove p1 p2 member        从p1移到p2</strong></p>
+<p><strong>scard key                 返回set的元素个数</strong></p>
+<p><strong>sismember key member      判断member是否在set中</strong></p>
+<p><strong>sinter key1 key2…keyN   返回所有给定key的交集 </strong></p>
+<p><strong>sunion key1 key2…keyN   返回所有给定key的并集 </strong></p>
+<p><strong>sdiff key1 key2…keyN    返回在k1不在k2的元素集 </strong></p>
+<p><strong>smembers key              返回key对应set的所有元素，结果是无序的</strong> </p>
+<p>可以实现共同好友（交集）</p>
+<h4 id="SortSet"><a href="#SortSet" class="headerlink" title="SortSet"></a>SortSet</h4><p>元素有权值，可以实现有序</p>
+<p><strong>zadd key score member            添加元素到集合，元素在集合中存在则更新对应score</strong> </p>
+<p><strong>zrem key member                  删除指定元素，1表示成功，如果元素不存在返回0 </strong></p>
+<p><strong>zincrby key incr member          按照incr幅度增加对应member的score值，返回score值 </strong></p>
+<p><strong>zrank key member                 返回指定元素在集合中的排名(下标)，集合中元素是按score从小到大排序的 zrevrank key member              同上，但是集合中元素是按score从大到小排序</strong><br><strong>zrange key start end             类似lrange操作是从集合中去指定区间的元素。返回的是有序的结果 </strong></p>
+<p><strong>zrevrange key start end          同上，返回结果是按score逆序的 </strong></p>
+<p><strong>zcard key                        返回集合中元素个数 zscore key element               返回给定元素对应的score </strong><br><strong>zremrangebyrank key min max      删除集合中排名在给定区间的元素(权值从小到大排序)</strong> </p>
+<h4 id="Hash操作"><a href="#Hash操作" class="headerlink" title="Hash操作"></a>Hash操作</h4><p>类似一条表记录<br><img src="https://img-blog.csdn.net/20161128164051439?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><strong>hset key field value             设置hash field为指定值，如果key不存在，则先创建 </strong></p>
+<p><strong>hget key field                   获取指定的hash field </strong></p>
+<p><strong>hmget key field1…fieldN        获取多个指定的hash field </strong></p>
+<p><strong>hmset key field1 value1…fieldN  valueN       同时设置hash的多个field </strong></p>
+<p><strong>hincrby key field integer        将指定的hash field加上给定值 </strong></p>
+<p><strong>hexists key field                测试指定的field是否存在 </strong></p>
+<p><strong>hdel key field                   删除指定的hash field  </strong></p>
+<p><strong>hlen key                         返回指定hsah的field数量 </strong></p>
+<p><strong>hkeys key                        返回hash的所有field </strong></p>
+<p><strong>hvals key                        返回hash的所有value </strong></p>
+<p><strong>hgetall key                      返回hsah的所有field和value</strong> </p>
 
         
       </div>
@@ -515,7 +573,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#dokcer基础"><span class="nav-number">1.</span> <span class="nav-text">dokcer基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#容器操作"><span class="nav-number">1.1.</span> <span class="nav-text">容器操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署Web项目到docker"><span class="nav-number">2.</span> <span class="nav-text">部署Web项目到docker</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">1.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis"><span class="nav-number">2.</span> <span class="nav-text">redis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#list操作指令"><span class="nav-number">2.1.</span> <span class="nav-text">list操作指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set操作"><span class="nav-number">2.2.</span> <span class="nav-text">Set操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SortSet"><span class="nav-number">2.3.</span> <span class="nav-text">SortSet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hash操作"><span class="nav-number">2.4.</span> <span class="nav-text">Hash操作</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -699,8 +757,8 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://gitsarp.github.io/unfinished/docker.html';
-          this.page.identifier = 'unfinished/docker.html';
+          this.page.url = 'http://gitsarp.github.io/sources/unfinished/redis缓存.html';
+          this.page.identifier = 'sources/unfinished/redis缓存.html';
           this.page.title = '';
         };
         var d = document, s = d.createElement('script');

@@ -81,20 +81,18 @@
 
 
 
-<meta name="description" content="ehcache 依赖12345   	&amp;lt;dependency&amp;gt;	&amp;lt;groupId&amp;gt;net.sf.ehcache&amp;lt;/groupId&amp;gt;	&amp;lt;artifactId&amp;gt;ehcache&amp;lt;/artifactId&amp;gt;	&amp;lt;version&amp;gt;2.8.2&amp;lt;/version&amp;gt;&amp;lt;/dependency&amp;gt;     spring配置Cac">
+<meta name="description" content="构建工具 make Ant mavenquickstart 创建工程：mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 构建mvn package 测试java">
 <meta name="keywords" content="Blog,Tech">
 <meta property="og:type" content="website">
 <meta property="og:title" content="FreaxJJ">
-<meta property="og:url" content="http://gitsarp.github.io/unfinished/ehcache.html">
+<meta property="og:url" content="http://gitsarp.github.io/sources/unfinished/maven.html">
 <meta property="og:site_name" content="FreaxJJ">
-<meta property="og:description" content="ehcache 依赖12345   	&amp;lt;dependency&amp;gt;	&amp;lt;groupId&amp;gt;net.sf.ehcache&amp;lt;/groupId&amp;gt;	&amp;lt;artifactId&amp;gt;ehcache&amp;lt;/artifactId&amp;gt;	&amp;lt;version&amp;gt;2.8.2&amp;lt;/version&amp;gt;&amp;lt;/dependency&amp;gt;     spring配置Cac">
+<meta property="og:description" content="构建工具 make Ant mavenquickstart 创建工程：mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 构建mvn package 测试java">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1049928-5be87852a2c8e88f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/425">
-<meta property="og:updated_time" content="2018-07-27T01:54:28.988Z">
+<meta property="og:updated_time" content="2018-07-27T01:54:43.176Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FreaxJJ">
-<meta name="twitter:description" content="ehcache 依赖12345   	&amp;lt;dependency&amp;gt;	&amp;lt;groupId&amp;gt;net.sf.ehcache&amp;lt;/groupId&amp;gt;	&amp;lt;artifactId&amp;gt;ehcache&amp;lt;/artifactId&amp;gt;	&amp;lt;version&amp;gt;2.8.2&amp;lt;/version&amp;gt;&amp;lt;/dependency&amp;gt;     spring配置Cac">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1049928-5be87852a2c8e88f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/425">
+<meta name="twitter:description" content="构建工具 make Ant mavenquickstart 创建工程：mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 构建mvn package 测试java">
 
 
 
@@ -124,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://gitsarp.github.io/unfinished/ehcache.html"/>
+  <link rel="canonical" href="http://gitsarp.github.io/sources/unfinished/maven.html"/>
 
 
 
@@ -316,36 +314,145 @@
       <div class="post-body">
         
         
-          <h3 id="ehcache"><a href="#ehcache" class="headerlink" title="ehcache"></a>ehcache</h3><ol>
-<li>依赖<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sf.ehcache<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ehcache<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <h4 id="构建工具"><a href="#构建工具" class="headerlink" title="构建工具"></a>构建工具</h4><ul>
+<li>make</li>
+<li>Ant</li>
+<li>maven<h3 id="quickstart"><a href="#quickstart" class="headerlink" title="quickstart"></a>quickstart</h3></li>
+<li>创建工程：mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</li>
+<li>构建mvn package</li>
+<li>测试java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App<h3 id="Build-Lifecycle构建生命周期"><a href="#Build-Lifecycle构建生命周期" class="headerlink" title="Build Lifecycle构建生命周期"></a>Build Lifecycle构建生命周期</h3>构建生命周期是一组阶段的序列（sequence of phases），每个阶段定义了目标被执行的顺序。<br>典型：<br>| 阶段              | 处理     | 描述                                                 |<br>| —————– | ——– | —————————————————- |<br>| prepare-resources | 资源拷贝 | 本阶段可以自定义需要拷贝的资源                       |<br>| compile           | 编译     | 本阶段完成源代码编译                                 |<br>| package           | 打包     | 本阶段根据 pom.xml 中描述的打包配置创建 JAR / WAR 包 |<br>| install           | 安装     | 本阶段在本地 / 远程仓库中安装工程包                  |<h4 id="标准生命周期"><a href="#标准生命周期" class="headerlink" title="标准生命周期"></a>标准生命周期</h4></li>
+<li>clean</li>
+<li>default(or build)</li>
+<li><p>site</p>
+<h4 id="clean生命周期"><a href="#clean生命周期" class="headerlink" title="clean生命周期"></a>clean生命周期</h4></li>
+<li><p>pre-clean</p>
 </li>
-</ol>
-<p><img src="https://upload-images.jianshu.io/upload_images/1049928-5be87852a2c8e88f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/425" alt=""></p>
-<ol start="2">
-<li><p>spring配置CacheManager</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"cacheManagerFactory"</span></span><br><span class="line">	<span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.cache.ehcache.EhCacheManagerFactoryBean"</span>&gt;</span><br><span class="line">	&lt;property name=<span class="string">"configLocation"</span> value=<span class="string">"classpath:ehcache.xml"</span> /&gt;</span><br><span class="line">&lt;<span class="regexp">/bean&gt;</span></span><br><span class="line"><span class="regexp">&lt;bean id="commonCacheManager"</span></span><br><span class="line"><span class="regexp">	class="org.springframework.cache.ehcache.EhCacheCacheManager"&gt;</span></span><br><span class="line"><span class="regexp">	&lt;property name="cacheManager" ref="cacheManagerFactory" /</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/bean&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ehcache配置(ehcache.xml)</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ehcache</span> <span class="attr">name</span>=<span class="string">"ehCacheDataDictCache"</span> <span class="attr">updateCheck</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">		<span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">		<span class="attr">xsi:noNamespaceSchemaLocation</span>=<span class="string">"http://ehcache.org/ehcache.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;<span class="name">diskStore</span> <span class="attr">path</span>=<span class="string">"java.io.tmpdir/dataDict"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;<span class="name">defaultCache</span> <span class="attr">maxEntriesLocalHeap</span>=<span class="string">"100"</span> <span class="attr">eternal</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">timeToIdleSeconds</span>=<span class="string">"120"</span> <span class="attr">timeToLiveSeconds</span>=<span class="string">"120"</span> <span class="attr">overflowToDisk</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">maxEntriesLocalDisk</span>=<span class="string">"100"</span> <span class="attr">diskPersistent</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">diskExpiryThreadIntervalSeconds</span>=<span class="string">"120"</span> <span class="attr">memoryStoreEvictionPolicy</span>=<span class="string">"LRU"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">cache</span> <span class="attr">name</span>=<span class="string">"dataDictCache"</span> <span class="attr">maxEntriesLocalHeap</span>=<span class="string">"100"</span> <span class="attr">eternal</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">overflowToDisk</span>=<span class="string">"true"</span> <span class="attr">diskPersistent</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">diskExpiryThreadIntervalSeconds</span>=<span class="string">"120"</span> <span class="attr">memoryStoreEvictionPolicy</span>=<span class="string">"LRU"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">cacheEventListenerFactory</span></span></span><br><span class="line"><span class="tag">				<span class="attr">class</span>=<span class="string">"net.sf.ehcache.distribution.RMICacheReplicatorFactory"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">cache</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!-- 配置说明： 负载均衡web部署几台rmiUrls就要配置几个，多个用|隔开；格式为：//ip:port/dataDictCache--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">cacheManagerPeerProviderFactory</span></span></span><br><span class="line"><span class="tag">			<span class="attr">class</span>=<span class="string">"net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">properties</span>=<span class="string">"peerDiscovery=manual,rmiUrls=//192.168.54.168:11001/dataDictCache|//192.168.54.90:11002/dataDictCache"</span> /&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 配置说明： port就是当前web的端口与rmiUrls中的port保持一直，建议用11001开始累加--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">cacheManagerPeerListenerFactory</span></span></span><br><span class="line"><span class="tag">			<span class="attr">class</span>=<span class="string">"net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">properties</span>=<span class="string">"port=11001"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">ehcache</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ul>
-<li>diskStore:当内存缓存中对象数量超过maxElementsInMemory时,将缓存对象写到磁盘缓存中(需对象实现序列化接口)。</li>
-<li>cachemanager限制大小<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ehcache</span> <span class="attr">...</span>  </span></span><br><span class="line"><span class="tag">   <span class="attr">maxBytesLocalHeap</span>=<span class="string">"500M"</span> <span class="attr">maxBytesLocalOffHeap</span>=<span class="string">"2G"</span> <span class="attr">maxBytesLocalDisk</span>=<span class="string">"50G"</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">ehcache</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li>clean</li>
+<li>post-clean<br>将 maven-antrun-plugin:run 目标添加到 pre-clean、clean 和 post-clean 阶段中,这样可以在 clean 生命周期的各个阶段显示文本信息:<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-antrun-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>id.pre-clean<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">phase</span>&gt;</span>pre-clean<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">goal</span>&gt;</span>run<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">tasks</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">echo</span>&gt;</span>pre-clean phase<span class="tag">&lt;/<span class="name">echo</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">tasks</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>id.clean<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">phase</span>&gt;</span>clean<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">goal</span>&gt;</span>run<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">tasks</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">echo</span>&gt;</span>clean phase<span class="tag">&lt;/<span class="name">echo</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">tasks</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>id.post-clean<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">phase</span>&gt;</span>post-clean<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">goal</span>&gt;</span>run<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">tasks</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">echo</span>&gt;</span>post-clean phase<span class="tag">&lt;/<span class="name">echo</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">tasks</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><strong>maxBytesLocalHeap</strong>是用来限制缓存所能使用的堆内存的最大字节数的，默认为0不限制<br><strong>maxBytesLocalOffHeap</strong>是用来限制缓存所能使用的非堆内存的最大字节数，默认为0不限制<br><strong>maxBytesLocalDisk</strong>是用来限制缓存所能使用的磁盘的最大字节数的，默认为0不限制<br>另外cache级别上，还可以设置<br><strong>maxEntriesLocalHeap</strong>是用来限制当前缓存在堆内存上所能保存的最大元素数量的<br><strong>maxEntriesLocalDisk</strong>是用来限制在磁盘上所能保存的元素的最大数量的。</p>
-<ul>
-<li><strong>eternal 缓存中对象是否永久有效,即是否永驻内存</strong>,true时将忽略timeToIdleSeconds和timeToLiveSeconds。</li>
-<li>timeToIdleSeconds缓存数据在失效前的允许闲置时间(单位:秒),默认0无限制，即访问这个cache中元素的最大间隔时间,若超过这个时间没有访问此Cache中的某个元素,那么此元素将被从Cache中清除。</li>
-<li>timeToLiveSeconds缓存数据在失效前的允许存活时间(单位:秒),默认0无限制，也就是说从创建开始计时,当超过这个时间时,此元素将从Cache中清除。</li>
-<li>overflowToDisk内存不足时,是否启用磁盘缓存(即内存中对象数量达到maxElementsInMemory时,Ehcache会将对象写到磁盘中，path指定的目录下)</li>
-<li>diskPersistent是否持久化磁盘缓存,当这个属性的值为true时,系统在初始化时会在磁盘中查找文件名为cache名称,后缀名为index的文件，这个文件中存放了已经持久化在磁盘中的cache的index,找到后会把cache加载到内存，要想把cache真正持久化到磁盘,写程序时注意执行net.sf.ehcache.Cache.put(Element element)后要调用flush()方法。</li>
-<li>diskExpiryThreadIntervalSeconds：磁盘缓存的清理线程运行间隔,默认120秒。</li>
-<li>memoryStoreEvictionPolicy：内存存储与释放策略，共有三种策略,分别为LRU(最近最少使用)、LFU(最常用的)、FIFO(先进先出)。</li>
+<h4 id="Default-or-Build-生命周期"><a href="#Default-or-Build-生命周期" class="headerlink" title="Default (or Build) 生命周期"></a>Default (or Build) 生命周期</h4><p>当一个阶段通过 Maven 命令调用时，例如 mvn compile，该阶段之前以及包括该阶段在内的所有阶段会被执行。</p>
+<table>
+<thead>
+<tr>
+<th>生命周期阶段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>validate</strong></td>
+<td>检查工程配置是否正确，完成构建过程的所有必要信息是否能够获取到。</td>
+</tr>
+<tr>
+<td>initialize</td>
+<td>初始化构建状态，例如设置属性。</td>
+</tr>
+<tr>
+<td>generate-sources</td>
+<td>生成编译阶段需要包含的任何源码文件。</td>
+</tr>
+<tr>
+<td>process-sources</td>
+<td>处理源代码，例如，过滤任何值（filter any value）。</td>
+</tr>
+<tr>
+<td>generate-resources</td>
+<td>生成工程包中需要包含的资源文件。</td>
+</tr>
+<tr>
+<td>process-resources</td>
+<td>拷贝和处理资源文件到目的目录中，为打包阶段做准备。</td>
+</tr>
+<tr>
+<td><strong>compile</strong></td>
+<td>编译工程源码。</td>
+</tr>
+<tr>
+<td>process-classes</td>
+<td>处理编译生成的文件，例如 Java Class 字节码的加强和优化。</td>
+</tr>
+<tr>
+<td>generate-test-sources</td>
+<td>生成编译阶段需要包含的任何测试源代码。</td>
+</tr>
+<tr>
+<td>process-test-sources</td>
+<td>处理测试源代码，例如，过滤任何值（filter any values)。</td>
+</tr>
+<tr>
+<td>test-compile</td>
+<td>编译测试源代码到测试目的目录。</td>
+</tr>
+<tr>
+<td>process-test-classes</td>
+<td>处理测试代码文件编译后生成的文件。</td>
+</tr>
+<tr>
+<td><strong>test</strong></td>
+<td>使用适当的单元测试框架（例如JUnit）运行测试。</td>
+</tr>
+<tr>
+<td>prepare-package</td>
+<td>在真正打包之前，为准备打包执行任何必要的操作。</td>
+</tr>
+<tr>
+<td><strong>package</strong></td>
+<td>获取编译后的代码，并按照可发布的格式进行打包，例如 JAR、WAR 或者 EAR 文件。</td>
+</tr>
+<tr>
+<td>pre-integration-test</td>
+<td>在集成测试执行之前，执行所需的操作。例如，设置所需的环境变量。</td>
+</tr>
+<tr>
+<td>integration-test</td>
+<td>处理和部署必须的工程包到集成测试能够运行的环境中。</td>
+</tr>
+<tr>
+<td>post-integration-test</td>
+<td>在集成测试被执行后执行必要的操作。例如，清理环境。</td>
+</tr>
+<tr>
+<td><strong>verify</strong></td>
+<td>运行检查操作来验证工程包是有效的，并满足质量要求。</td>
+</tr>
+<tr>
+<td><strong>install</strong></td>
+<td>安装工程包到本地仓库中，该仓库可以作为本地其他工程的依赖。</td>
+</tr>
+<tr>
+<td><strong>deploy</strong></td>
+<td>拷贝最终的工程包到远程仓库中，以共享给其他开发人员和工程。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Site生命周期"><a href="#Site生命周期" class="headerlink" title="Site生命周期"></a>Site生命周期</h3><ul>
+<li>pre-site</li>
+<li>site</li>
+<li>post-site</li>
+<li>site-deploy</li>
 </ul>
-<h3 id="2-10-x使用"><a href="#2-10-x使用" class="headerlink" title="2.10.x使用"></a>2.10.x使用</h3><p>//创建缓存管理器<br>CacheManager cacheManager = CacheManager.create(“./src/main/resources/ehcache.xml”);<br>//获取缓存对象<br>Cache cache = cacheManager.getCache(“myCache”);<br>//添加缓存条目<br>Element e1 = new Element(1L,”Hello world!”);<br>Element e2 = new Element(2L,new User(“assad”,”Guangzhou”,20));<br>cache.put(e1);<br>cache.put(e2);<br>//获取缓存条目<br>Element e3 = cache.get(1L);<br>String str = (String)e3.getObjectValue();<br>Element e4 = cache.get(2L);<br>User user = (User)e4.getObjectValue();<br>//刷新缓存<br>cache.flush();<br>//关闭缓存管理器<br>cacheManager.shutdown();<br><a href="http://www.ehcache.org/documentation/" target="_blank" rel="noopener">3.5使用</a></p>
-<h4 id="RMI方式缓存集群-配置分布式缓存"><a href="#RMI方式缓存集群-配置分布式缓存" class="headerlink" title="RMI方式缓存集群/配置分布式缓存"></a>RMI方式缓存集群/配置分布式缓存</h4><p><a href="https://www.cnblogs.com/hoojo/archive/2012/07/19/2599534.html" target="_blank" rel="noopener"></a></p>
+<h3 id="maven核心插件"><a href="#maven核心插件" class="headerlink" title="maven核心插件"></a>maven核心插件</h3><ul>
+<li>clean  构建完之后的清理（Clean up after the build.）</li>
+<li>compiler  编译源码（Compiles Java sources.）<br>   deploy 部署编译后的产品到远程仓库（     Deploy the built artifact to the remote repository.）</li>
+<li>failsafe在隔离的classloader上允许junit集成测试（Run the JUnit integration tests in an isolated classloader）<br>   install     安装编译后的产品到本地仓库Install the built artifact into the local repository.<br>   resources         Copy the resources to the output directory for including in the JAR.<br>   site         Generate a site for the current project.<br>   surefire         Run the JUnit unit tests in an isolated classloader.     </li>
+<li>verifier：Useful for integration tests - verifies the existence of certain conditions.</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">				<span class="comment">&lt;!-- 以防编译出现中文乱码导致页面乱码 --&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">mvn</span> <span class="selector-attr">[plugin-name]</span>:<span class="selector-attr">[goal-name]</span></span><br><span class="line"><span class="selector-tag">eg</span><span class="selector-class">.mvn</span> <span class="selector-tag">compiler</span><span class="selector-pseudo">:compile</span></span><br></pre></td></tr></table></figure>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p><code>mvn archetype：create</code> 创建Maven项目</p>
+<p> <code>mvn compile</code> 编译源代码</p>
+<p> <code>mvn deploy</code> 发布项目</p>
+<p> <code>mvn test-compile</code> 编译测试源代码</p>
+<p> <code>mvn test</code> 运行应用程序中的单元测试</p>
+<p> <code>mvn site</code> 生成项目相关信息的网站</p>
+<p> <code>mvn clean</code> 清除项目目录中的生成结果</p>
+<p> <code>mvn package</code> 根据项目生成的jar</p>
+<p> <code>mvn install</code> 在本地Repository中安装jar</p>
+<p> <code>mvn eclipse:eclipse</code> 生成eclipse项目文件</p>
+<p> <code>mvnjetty:run</code> 启动jetty服务</p>
+<p> <code>mvntomcat:run</code> 启动tomcat服务</p>
+<p> <code>mvn clean package -Dmaven.test.skip=true</code> 清除以前的包后重新打包，跳过测试类</p>
 
         
       </div>
@@ -519,7 +626,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ehcache"><span class="nav-number">1.</span> <span class="nav-text">ehcache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-10-x使用"><span class="nav-number">2.</span> <span class="nav-text">2.10.x使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RMI方式缓存集群-配置分布式缓存"><span class="nav-number">2.1.</span> <span class="nav-text">RMI方式缓存集群/配置分布式缓存</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#构建工具"><span class="nav-number">1.</span> <span class="nav-text">构建工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#quickstart"><span class="nav-number"></span> <span class="nav-text">quickstart</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Build-Lifecycle构建生命周期"><span class="nav-number"></span> <span class="nav-text">Build Lifecycle构建生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标准生命周期"><span class="nav-number">1.</span> <span class="nav-text">标准生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#clean生命周期"><span class="nav-number">2.</span> <span class="nav-text">clean生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Default-or-Build-生命周期"><span class="nav-number">3.</span> <span class="nav-text">Default (or Build) 生命周期</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Site生命周期"><span class="nav-number"></span> <span class="nav-text">Site生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#maven核心插件"><span class="nav-number"></span> <span class="nav-text">maven核心插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number"></span> <span class="nav-text">常用命令</span></a></div>
             
 
           </div>
@@ -703,8 +810,8 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://gitsarp.github.io/unfinished/ehcache.html';
-          this.page.identifier = 'unfinished/ehcache.html';
+          this.page.url = 'http://gitsarp.github.io/sources/unfinished/maven.html';
+          this.page.identifier = 'sources/unfinished/maven.html';
           this.page.title = '';
         };
         var d = document, s = d.createElement('script');
